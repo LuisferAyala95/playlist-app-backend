@@ -5,10 +5,10 @@ FROM eclipse-temurin:17-jdk-jammy
 COPY . /app
 WORKDIR /app
 
-# 3️⃣ Construir la aplicación usando Maven
+# 3️⃣ Construir la aplicacion usando Maven
 RUN mvn clean package -DskipTests
 
-# 4️⃣ Exponer el puerto que usará Spring Boot
+# 4️⃣ Exponer el puerto que usara Spring Boot
 EXPOSE 8080
 
 # 5️⃣ Comando para ejecutar la API
