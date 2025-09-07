@@ -15,7 +15,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests((auth)-> auth
                 .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
-        ).csrf((csrf)-> csrf.ignoringRequestMatchers("/h2-console/**", "/playlists/**"))
+        ).csrf((csrf)-> csrf.ignoringRequestMatchers("/h2-console/**", "/lists/**"))
                 .headers((headers)-> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
                 .httpBasic(Customizer.withDefaults());
 
