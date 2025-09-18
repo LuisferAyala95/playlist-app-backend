@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.model.Cancion;
 import org.example.model.Playlist;
 import org.example.service.PlaylistService;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,27 @@ public class PlaylistController {
 
     @GetMapping("/{nombre}")
     public ResponseEntity<Playlist> getPlaylistByName(@PathVariable String nombre) {
+        Playlist playlist = playlistService.getByName(nombre)
+                .orElseThrow(()-> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "No se encontró la playlist con nombre: " + nombre
+                ));
+        return ResponseEntity.ok(playlist);
+    }
+
+    @GetMapping("/{nombre}")
+    public ResponseEntity<String> getSongByName(@PathVariable String nombre) {
+        Cancion song = playlistService.getSongByName(nombre);
+
+        List<Playlist> playlists = song.getPlaylists();
+        String playlistNames = playlists.get(0).getNombre();
+
+        return ResponseEntity.ok(playlistNames);
+    }
+
+
+    @GetMapping("/{nombre}")
+    public ResponseEntity<Playlist> getPlaylistByNameSong(@PathVariable String nombre) {
         Playlist playlist = playlistService.getByName(nombre)
                 .orElseThrow(()-> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,

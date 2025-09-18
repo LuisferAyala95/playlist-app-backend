@@ -1,6 +1,7 @@
 package org.example.repository;
 
 import org.example.PlaylistApiApplication;
+import org.example.model.Cancion;
 import org.example.model.Playlist;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -11,4 +12,7 @@ public interface PlaylistRepository extends JpaRepository<Playlist, Long> {
     boolean existsByNombre(String nombre);
 
     void deleteByNombre(String nombre);
+
+    Cancion findByTitulo(String title);
+
 }

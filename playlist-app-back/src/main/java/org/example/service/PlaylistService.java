@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.model.Cancion;
 import org.example.model.Playlist;
 import org.example.repository.PlaylistRepository;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,11 @@ public class PlaylistService {
     public Optional<Playlist> getByName(String name) {
         return this.playlistRepository.findByNombre(name);
     }
+
+    public Cancion getSongByName(String name) {
+        return this.playlistRepository.findByTitulo((name));
+    }
+
 
     public boolean deleteById(Long id) {
         if (this.playlistRepository.existsById(id)) {

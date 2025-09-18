@@ -1,9 +1,8 @@
 package org.example.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Cancion {
@@ -16,6 +15,18 @@ public class Cancion {
     private String album;
     private String anno;
     private String genero;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cancion_id")
+    private List<Playlist> playlists;
+
+    public List<Playlist> getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(List<Playlist> playlists) {
+        this.playlists = playlists;
+    }
 
     public Long getId() {
         return id;
